@@ -33,6 +33,22 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  sortReservations = (value) => {
+    const { reservations } = this.state;
+    if (value === 'newest') {
+      let sortedReservationsNew = reservations.sort((a , b) => {
+
+        return parseInt(b.date) - parseInt(a.date);
+      });
+      this.setState({ reservations: sortedReservationsNew })
+    } else if (value === 'oldest') {
+      let sortedReservationsOld = reservations.sort((a , b) => {
+        return parseInt(a.date) - parseInt(b.date);
+      });
+      this.setState({ reservations: sortedReservationsOld })
+    }
+  }
+
   render() {
     const { reservations } = this.state;
     return (
@@ -44,6 +60,7 @@ class App extends Component {
         <ReservationContainer
           reservations={reservations}
           handleReservationDelete={this.handleReservationDelete}
+          sortReservations={this.sortReservations}
         />
       </div>
     )

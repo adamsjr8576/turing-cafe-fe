@@ -2,7 +2,7 @@ import React from 'react';
 import './ReservationContainer.css';
 import ReservationCard from '../ReservationCard/ReservationCard.js'
 
-const ReservationContainer = ({ reservations, handleReservationDelete }) => {
+const ReservationContainer = ({ reservations, handleReservationDelete, sortReservations }) => {
   const reservationCards = reservations.map(reservation => {
     return (
       <ReservationCard
@@ -18,6 +18,13 @@ const ReservationContainer = ({ reservations, handleReservationDelete }) => {
   })
   return(
     <main className='main-container'>
+      <div className='select-container'>
+        <select className='order-select' onChange={(event) => sortReservations(event.target.value)}>
+          <option value=''>--Choose An Option--</option>
+          <option value='newest'>Sort by Newest</option>
+          <option value='oldest'>Sort by Oldest</option>
+        </select>
+      </div>
       {reservationCards}
     </main>
   );

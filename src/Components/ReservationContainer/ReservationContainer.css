@@ -7,3 +7,15 @@
   overflow: auto;
   margin-top: 25px;
 }
+
+.select-container {
+  width: 100%;
+}
+
+.order-select {
+  width: 20%;
+  height: 30px;
+  font-size: 1em;
+  border-radius: 10px;
+  outline: 0;
+}
