@@ -10,9 +10,10 @@ exports[`App should match the snapshot with all data passing correctly 1`] = `
     Turing Cafe Reservations
   </h1>
   <Form
-    addReservation={[Function]}
+    handleReservationPost={[Function]}
   />
   <ReservationContainer
+    cancelReservation={[Function]}
     reservations={Array []}
   />
 </div>

@@ -6,10 +6,13 @@ import { shallow } from 'enzyme';
 describe('Form', () => {
 
   let wrapper;
+  const mockAddReservation = jest.fn();
+  const mockHandleReservationPost = jest.fn()
 
   beforeEach(() => {
     wrapper = shallow(<Form
-      addReservation={jest.fn()}
+      addReservation={mockAddReservation}
+      handleReservationPost={mockHandleReservationPost}
       />);
   });
 
@@ -34,6 +37,15 @@ describe('Form', () => {
 
     wrapper.find('.input1').simulate('change', mockEvent);
     expect(wrapper.instance().updateInputState).toHaveBeenCalledWith(mockEvent);
+  });
+
+  it('should call handleReservationPost on button click', () => {
+    wrapper.instance().clearState = jest.fn();
+
+    wrapper.find('button').simulate('click');
+
+    expect(mockHandleReservationPost).toHaveBeenCalledWith(wrapper.state());
+    expect(wrapper.instance().clearState).toHaveBeenCalled();
   })
 
 });

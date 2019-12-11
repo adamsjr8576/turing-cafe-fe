@@ -21,16 +21,54 @@ class App extends Component {
     this.setState({ reservations: [...this.state.reservations, reservation] })
   }
 
+  handleReservationPost = (state) => {
+    const { name, date, time, number } = state
+    const dateSplit = date.split('-');
+    dateSplit.shift();
+    const newDate = dateSplit.join('/');
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        date: newDate,
+        time: time,
+        number: parseInt(number)
+      }),
+      headers: {
+        "Content-Type": "application/json"
+        }
+      }
+    fetch('http://localhost:3001/api/v1/reservations', options)
+    .then(res => res.json())
+    .then(data => this.addReservation(data))
+    .catch(err => console.log(err))
+  }
+
+  cancelReservation = (id) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+        }
+    }
+
+    fetch(`http://localhost:3001/api/v1/reservations/${id}`, options)
+      .then(res => res.json())
+      .then(reservations => this.setState({ reservations }))
+      .catch(err => console.log(err))
+  }
+
   render() {
     const { reservations } = this.state;
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <Form
-          addReservation={this.addReservation}
+          handleReservationPost={this.handleReservationPost}
         />
         <ReservationContainer
           reservations={reservations}
+          cancelReservation={this.cancelReservation}
         />
       </div>
     )

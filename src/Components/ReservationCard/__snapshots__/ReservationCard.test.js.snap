@@ -20,6 +20,8 @@ exports[`ReservationCard should match the snapshot with all data passing correct
   </p>
   <button
     className="delete-button"
+    id="123123"
+    onClick={[Function]}
   >
     Cancel
   </button>
