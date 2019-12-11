@@ -54,7 +54,7 @@ class Form extends Component {
           name='name'
           value={name}
           placeholder='Name'
-          className='form-input'
+          className='form-input input1'
           onChange={(event) => this.updateInputState(event)}
         />
         <input
@@ -62,7 +62,7 @@ class Form extends Component {
           name='date'
           value={date}
           placeholder='Check-in Date'
-          className='form-input'
+          className='form-input input2'
           onChange={(event) => this.updateInputState(event)}
           />
         <input
@@ -70,7 +70,7 @@ class Form extends Component {
           name='time'
           value={time}
           placeholder='Check-In Time'
-          className='form-input'
+          className='form-input input3'
           onChange={(event) => this.updateInputState(event)}
         />
         <input
@@ -78,7 +78,7 @@ class Form extends Component {
           name='number'
           value={number}
           placeholder='Number of Guests'
-          className='form-input'
+          className='form-input input4'
           onChange={(event) => this.updateInputState(event)}
         />
         <button type='button' className='reserve-button' onClick={() => {this.handleReservationPost(); this.clearState()}}>Make Reservation</button>
