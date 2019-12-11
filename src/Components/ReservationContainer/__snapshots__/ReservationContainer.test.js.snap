@@ -30,6 +30,7 @@ exports[`ReservationContainer should match the snapshot with all data passing co
   </div>
   <ReservationCard
     date="12/5"
+    handleReservationDelete={[MockFunction]}
     name="John Adams"
     number={4}
     time="4:00"
