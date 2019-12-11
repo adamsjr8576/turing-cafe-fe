@@ -17,12 +17,18 @@ class App extends Component {
     .then(reservations => this.setState({ reservations }))
   }
 
+  addReservation = (reservation) => {
+    this.setState({ reservations: [...this.state.reservations, reservation] })
+  }
+
   render() {
     const { reservations } = this.state;
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
-        <Form />
+        <Form
+          addReservation={this.addReservation}
+        />
         <ReservationContainer
           reservations={reservations}
         />

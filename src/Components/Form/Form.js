@@ -20,6 +20,29 @@ class Form extends Component {
     this.setState({ name:'', date:'', time:'', number:0 })
   }
 
+  handleReservationPost = () => {
+    const { name, date, time, number } = this.state;
+    const dateSplit = date.split('-');
+    dateSplit.shift();
+    const newDate = dateSplit.join('/');
+    const options = {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        date: newDate,
+        time: time,
+        number: parseInt(number)
+      }),
+      headers: {
+        "Content-Type": "application/json"
+        }
+      }
+    fetch('http://localhost:3001/api/v1/reservations', options)
+    .then(res => res.json())
+    .then(data => this.props.addReservation(data))
+    .catch(err => console.log(err))
+  }
+
 
 
   render() {
@@ -58,7 +81,7 @@ class Form extends Component {
           className='form-input'
           onChange={(event) => this.updateInputState(event)}
         />
-        <button type='button' className='reserve-button'>Make Reservation</button>
+        <button type='button' className='reserve-button' onClick={() => {this.handleReservationPost(); this.clearState()}}>Make Reservation</button>
       </form>
     )
   }
