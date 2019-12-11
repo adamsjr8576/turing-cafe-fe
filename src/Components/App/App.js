@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Form from '../Form/Form.js';
-import ReservationContainer from '../ReservationContainer/ReservationContainer.js'
+import ReservationContainer from '../ReservationContainer/ReservationContainer.js';
+import { getReservations, postReservation, deleteReservation } from '../../apiCalls.js'
 
 class App extends Component {
   constructor() {
@@ -12,8 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/v1/reservations')
-    .then(res => res.json())
+    getReservations()
     .then(reservations => this.setState({ reservations }))
   }
 
@@ -22,38 +22,13 @@ class App extends Component {
   }
 
   handleReservationPost = (state) => {
-    const { name, date, time, number } = state
-    const dateSplit = date.split('-');
-    dateSplit.shift();
-    const newDate = dateSplit.join('/');
-    const options = {
-      method: "POST",
-      body: JSON.stringify({
-        name: name,
-        date: newDate,
-        time: time,
-        number: parseInt(number)
-      }),
-      headers: {
-        "Content-Type": "application/json"
-        }
-      }
-    fetch('http://localhost:3001/api/v1/reservations', options)
-    .then(res => res.json())
+    postReservation(state)
     .then(data => this.addReservation(data))
     .catch(err => console.log(err))
   }
 
-  cancelReservation = (id) => {
-    const options = {
-      method: 'DELETE',
-      headers: {
-        "Content-Type": "application/json"
-        }
-    }
-
-    fetch(`http://localhost:3001/api/v1/reservations/${id}`, options)
-      .then(res => res.json())
+  handleReservationDelete = (id) => {
+    deleteReservation(id)
       .then(reservations => this.setState({ reservations }))
       .catch(err => console.log(err))
   }
@@ -68,7 +43,7 @@ class App extends Component {
         />
         <ReservationContainer
           reservations={reservations}
-          cancelReservation={this.cancelReservation}
+          handleReservationDelete={this.handleReservationDelete}
         />
       </div>
     )
