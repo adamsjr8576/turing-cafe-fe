@@ -4,6 +4,30 @@ exports[`ReservationContainer should match the snapshot with all data passing co
 <main
   className="main-container"
 >
+  <div
+    className="select-container"
+  >
+    <select
+      className="order-select"
+      onChange={[Function]}
+    >
+      <option
+        value=""
+      >
+        --Choose An Option--
+      </option>
+      <option
+        value="newest"
+      >
+        Sort by Newest
+      </option>
+      <option
+        value="oldest"
+      >
+        Sort by Oldest
+      </option>
+    </select>
+  </div>
   <ReservationCard
     date="12/5"
     name="John Adams"

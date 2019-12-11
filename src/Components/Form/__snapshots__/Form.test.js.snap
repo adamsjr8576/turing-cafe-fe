@@ -30,11 +30,12 @@ exports[`Form should match the snapshot with all data passing correctly 1`] = `
   />
   <input
     className="form-input input4"
+    min="1"
     name="number"
     onChange={[Function]}
     placeholder="Number of Guests"
     type="number"
-    value={0}
+    value={1}
   />
   <button
     className="reserve-button"

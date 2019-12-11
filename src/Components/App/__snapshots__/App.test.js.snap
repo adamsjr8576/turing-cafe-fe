@@ -13,8 +13,9 @@ exports[`App should match the snapshot with all data passing correctly 1`] = `
     handleReservationPost={[Function]}
   />
   <ReservationContainer
-    cancelReservation={[Function]}
+    handleReservationDelete={[Function]}
     reservations={Array []}
+    sortReservations={[Function]}
   />
 </div>
 `;
